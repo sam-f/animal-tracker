@@ -4,11 +4,11 @@
 # TODO:
 #   Assocs:
 #     User - the owner of the animal. Devise model.
-#     AnimalFeeding - record of feeding.
-#     AnimalWeight - record of weight.
+#     FeedingRecord - record of feeding.
+#     WeightRecord - record of weight.
 #     FeedingSchedule - records a feeding schedule. Ie weekly.
-#     AnimalShedding - record of shedding history.
-#     AnimalPairing - record of pairing with another animal.
+#     SheddingRecord - record of shedding history.
+#     PairingRecord - record of pairing with another animal.
 class Animal < ApplicationRecord
   # Constants
   SEXES = [
