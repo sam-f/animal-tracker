@@ -4,7 +4,6 @@
 # TODO:
 #   Assocs:
 #     User - the owner of the animal. Devise model.
-#     FeedingRecord - record of feeding.
 #     FeedingSchedule - records a feeding schedule. Ie weekly.
 #     SheddingRecord - record of shedding history.
 #     PairingRecord - record of pairing with another animal.
