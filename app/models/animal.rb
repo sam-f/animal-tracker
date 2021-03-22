@@ -5,7 +5,6 @@
 #   Assocs:
 #     User - the owner of the animal. Devise model.
 #     FeedingRecord - record of feeding.
-#     WeightRecord - record of weight.
 #     FeedingSchedule - records a feeding schedule. Ie weekly.
 #     SheddingRecord - record of shedding history.
 #     PairingRecord - record of pairing with another animal.
@@ -16,6 +15,9 @@ class Animal < ApplicationRecord
     FEMALE = "f",
     UNKNOWN = "u"
   ].freeze
+
+  # Associations
+  has_many :weight_records, dependent: :delete_all
 
   # Validations
   validates :name, presence: true
