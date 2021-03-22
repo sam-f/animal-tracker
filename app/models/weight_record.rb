@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 
+# TODO:
+#   Attrs:
+#     Unit
 class WeightRecord < ApplicationRecord
   # Associations
   belongs_to :animal
