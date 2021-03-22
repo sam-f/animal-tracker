@@ -18,6 +18,7 @@ class Animal < ApplicationRecord
 
   # Associations
   has_many :weight_records, dependent: :delete_all
+  has_many :feeding_records, dependent: :delete_all
 
   # Validations
   validates :name, presence: true
