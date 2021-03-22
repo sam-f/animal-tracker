@@ -8,4 +8,8 @@ RSpec.describe Animal, type: :model do
     it { should validate_presence_of :sex }
     it { should validate_inclusion_of(:sex).in_array(Animal::SEXES) }
   end
+
+  describe "associations" do
+    it { should have_many_attached(:photos) }
+  end
 end

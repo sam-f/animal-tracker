@@ -9,14 +9,18 @@
 #     FeedingSchedule - records a feeding schedule. Ie weekly.
 #     AnimalShedding - record of shedding history.
 #     AnimalPairing - record of pairing with another animal.
-#     has_many_attached :photos - user submitted photos of animal.
 class Animal < ApplicationRecord
+  # Constants
   SEXES = [
     MALE = "m",
     FEMALE = "f",
     UNKNOWN = "u"
   ].freeze
 
+  # Validations
   validates :name, presence: true
   validates :sex, presence: true, inclusion: {in: SEXES}
+
+  # Associations
+  has_many_attached :photos
 end
