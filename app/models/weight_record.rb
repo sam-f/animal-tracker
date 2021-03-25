@@ -4,10 +4,11 @@
 #   Attrs:
 #     Unit
 class WeightRecord < ApplicationRecord
+  include ActsAsRecordable
+
   # Associations
   belongs_to :animal
 
   # Validations
-  validates :recorded_on, presence: true
   validates :weight, presence: true
 end

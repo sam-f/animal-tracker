@@ -5,9 +5,10 @@ require "rails_helper"
 RSpec.describe Animal, type: :model do
   describe "associations" do
     it { should belong_to(:animal_group) }
-    it { should have_many(:weight_records).dependent(:destroy_async) }
-    it { should have_many(:feeding_records).dependent(:destroy_async) }
-    it { should have_many(:stock_list_placements).dependent(:delete_all) }
+    it { should have_many(:weight_records).dependent(:delete_all) }
+    it { should have_many(:feeding_records).dependent(:delete_all) }
+    it { should have_many(:cleaning_records).dependent(:delete_all) }
+    it { should have_many(:stock_list_placements).dependent(:destroy_async) }
   end
 
   describe "validations" do

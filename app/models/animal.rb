@@ -16,9 +16,10 @@ class Animal < ApplicationRecord
 
   # Associations
   belongs_to :animal_group
-  has_many :weight_records, dependent: :destroy_async
-  has_many :feeding_records, dependent: :destroy_async
-  has_many :stock_list_placements, dependent: :delete_all
+  has_many :weight_records, dependent: :delete_all
+  has_many :feeding_records, dependent: :delete_all
+  has_many :cleaning_records, dependent: :delete_all
+  has_many :stock_list_placements, dependent: :destroy_async
   has_many_attached :photos
 
   # Validations
