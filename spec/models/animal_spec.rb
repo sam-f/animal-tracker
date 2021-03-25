@@ -4,7 +4,7 @@ require "rails_helper"
 
 RSpec.describe Animal, type: :model do
   describe "associations" do
-    it { should belong_to(:user) }
+    it { should belong_to(:animal_group) }
     it { should have_many(:weight_records).dependent(:destroy_async) }
     it { should have_many(:feeding_records).dependent(:destroy_async) }
     it { should have_many(:stock_list_placements).dependent(:delete_all) }

@@ -17,7 +17,7 @@ class Animal < ApplicationRecord
   ].freeze
 
   # Associations
-  belongs_to :user
+  belongs_to :animal_group
   has_many :weight_records, dependent: :destroy_async
   has_many :feeding_records, dependent: :destroy_async
   has_many :stock_list_placements, dependent: :delete_all

@@ -4,7 +4,7 @@ require "rails_helper"
 
 RSpec.describe User, type: :model do
   describe "associations" do
-    it { should have_many(:animals).dependent(:destroy_async) }
+    it { should have_many(:animal_groups).dependent(:destroy_async) }
     it { should have_many(:stock_lists).dependent(:destroy_async) }
   end
 
