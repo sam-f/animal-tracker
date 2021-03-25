@@ -6,6 +6,7 @@ class User < ApplicationRecord
 
   # Associations
   has_many :animals, dependent: :destroy_async
+  has_many :stock_lists, dependent: :destroy_async
 
   # Validations
   validates :first_name, presence: true

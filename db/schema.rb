@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_22_183625) do
+ActiveRecord::Schema.define(version: 2021_03_24_082340) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -62,6 +62,31 @@ ActiveRecord::Schema.define(version: 2021_03_22_183625) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["animal_id"], name: "index_feeding_records_on_animal_id"
+  end
+
+  create_table "stock_list_placements", force: :cascade do |t|
+    t.integer "stock_list_id", null: false
+    t.integer "animal_id", null: false
+    t.decimal "price", precision: 10, scale: 2
+    t.string "name", null: false
+    t.text "description"
+    t.date "available_from"
+    t.boolean "visible", default: true, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["animal_id"], name: "index_stock_list_placements_on_animal_id"
+    t.index ["stock_list_id"], name: "index_stock_list_placements_on_stock_list_id"
+  end
+
+  create_table "stock_lists", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.string "name", null: false
+    t.date "available_from"
+    t.text "description"
+    t.boolean "visible", default: true, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_stock_lists_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

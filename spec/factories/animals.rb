@@ -1,7 +1,6 @@
 FactoryBot.define do
   factory :animal do
-    association :weight_record
-    association :feeding_record
+    association :user
     name { "Alice" }
   end
 end

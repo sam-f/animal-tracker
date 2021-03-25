@@ -7,6 +7,7 @@ RSpec.describe Animal, type: :model do
     it { should belong_to(:user) }
     it { should have_many(:weight_records).dependent(:destroy_async) }
     it { should have_many(:feeding_records).dependent(:destroy_async) }
+    it { should have_many(:stock_list_placements).dependent(:delete_all) }
   end
 
   describe "validations" do

@@ -3,6 +3,7 @@
 # Represents a user-owned animal.
 # TODO:
 #   Assocs:
+#     AnimalGroup
 #     User - the owner of the animal. Devise model.
 #     FeedingSchedule - records a feeding schedule. Ie weekly.
 #     SheddingRecord - record of shedding history.
@@ -19,11 +20,10 @@ class Animal < ApplicationRecord
   belongs_to :user
   has_many :weight_records, dependent: :destroy_async
   has_many :feeding_records, dependent: :destroy_async
+  has_many :stock_list_placements, dependent: :delete_all
+  has_many_attached :photos
 
   # Validations
   validates :name, presence: true
   validates :sex, presence: true, inclusion: {in: SEXES}
-
-  # Associations
-  has_many_attached :photos
 end
