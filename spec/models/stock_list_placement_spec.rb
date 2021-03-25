@@ -6,6 +6,7 @@ RSpec.describe StockListPlacement, type: :model do
   describe "associations" do
     it { should belong_to :animal }
     it { should belong_to :stock_list }
+    it { should have_many_attached :photos }
   end
 
   describe "validations" do
