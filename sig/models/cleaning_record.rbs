@@ -1,0 +1,3 @@
+class CleaningRecord < ApplicationRecord
+  include ActsAsRecordable
+end

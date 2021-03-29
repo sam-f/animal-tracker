@@ -49,6 +49,12 @@ group :development do
   gem "spring"
   gem "standard"
   gem "guard-rspec", "~> 4.7.3", require: false
+
+  # Type Signature for Ruby
+  gem "rbs"
+
+  # Type Checker for Ruby
+  gem "steep"
 end
 
 group :test do

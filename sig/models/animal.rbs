@@ -1,0 +1,8 @@
+# Represents a user-owned animal.
+class Animal < ApplicationRecord
+  # Constants
+  SEXES: Array[String]
+  MALE: String
+  FEMALE: String
+  UNKNOWN: String
+end

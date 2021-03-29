@@ -1,0 +1,3 @@
+class WeightRecord < ApplicationRecord
+  include ActsAsRecordable
+end

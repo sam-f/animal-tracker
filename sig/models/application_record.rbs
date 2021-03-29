@@ -1,0 +1,5 @@
+class ApplicationRecord < ActiveRecord::Base
+  def self.has_many_attached: (Symbol | String) -> untyped
+
+  def self.devise: (Symbol, Symbol, Symbol, Symbol, Symbol) -> untyped
+end

@@ -1,0 +1,2 @@
+class AnimalGroup < ApplicationRecord
+end
