@@ -1,0 +1,5 @@
+module Email
+  class Address
+    VALID_FORMAT: Regexp
+  end
+end

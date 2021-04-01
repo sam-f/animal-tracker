@@ -1,7 +1,7 @@
 target :app do
   signature "sig"
 
-  check "app"
+  check "*.rb"
 
   repo_path "vendor/rbs/gem_rbs_collection/gems"
 
