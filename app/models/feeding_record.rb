@@ -5,7 +5,5 @@ class FeedingRecord < ApplicationRecord
 
   # Associations
   belongs_to :animal
-
-  # Validations
-  validates :food, presence: true
+  belongs_to :feeder, optional: true
 end

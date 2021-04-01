@@ -6,6 +6,8 @@
 #     FeedingSchedule - records a feeding schedule. Ie weekly.
 #     SheddingRecord - record of shedding history.
 #     PairingRecord - record of pairing with another animal.
+#   Attrs:
+#     Sort out birthday etc and use DOB
 class Animal < ApplicationRecord
   # Constants
   SEXES = [

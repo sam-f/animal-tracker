@@ -1,0 +1,2 @@
+class FeederGroup < ApplicationRecord
+end

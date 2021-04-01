@@ -46,11 +46,23 @@ StockListPlacement.create!(
   price: 120
 )
 
+rats = FeederGroup.create!(
+  user: alex,
+  name: "Rats"
+)
+
+large_rat = Feeder.create!(
+  feeder_group: rats,
+  name: "Large Rat",
+  count: 15
+)
+
 FeedingRecord.create!(
   food: "Large rat",
   recorded_on: Date.today,
   notes: "Left in overnight",
-  animal: jeff
+  animal: jeff,
+  feeder: large_rat
 )
 
 WeightRecord.create!(

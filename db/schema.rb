@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_25_075943) do
+ActiveRecord::Schema.define(version: 2021_03_29_170405) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -72,14 +72,36 @@ ActiveRecord::Schema.define(version: 2021_03_25_075943) do
     t.index ["animal_id"], name: "index_cleaning_records_on_animal_id"
   end
 
+  create_table "feeder_groups", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.string "name", null: false
+    t.text "description"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_feeder_groups_on_user_id"
+  end
+
+  create_table "feeders", force: :cascade do |t|
+    t.integer "feeder_group_id", null: false
+    t.string "name", null: false
+    t.integer "count", default: 0, null: false
+    t.decimal "weight", precision: 10, scale: 3
+    t.decimal "cost", precision: 10, scale: 2
+    t.text "description"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["feeder_group_id"], name: "index_feeders_on_feeder_group_id"
+  end
+
   create_table "feeding_records", force: :cascade do |t|
     t.integer "animal_id", null: false
-    t.string "food", null: false
     t.text "notes"
     t.date "recorded_on", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "feeder_id"
     t.index ["animal_id"], name: "index_feeding_records_on_animal_id"
+    t.index ["feeder_id"], name: "index_feeding_records_on_feeder_id"
   end
 
   create_table "stock_list_placements", force: :cascade do |t|
@@ -105,6 +127,19 @@ ActiveRecord::Schema.define(version: 2021_03_25_075943) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_stock_lists_on_user_id"
+  end
+
+  create_table "suppliers", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "email"
+    t.string "phone_number"
+    t.string "address_line_1"
+    t.string "address_line_2"
+    t.string "address_line_3"
+    t.text "description"
+    t.string "website"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "users", force: :cascade do |t|

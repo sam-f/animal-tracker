@@ -1,0 +1,3 @@
+class FeedingRecord < ApplicationRecord
+  include ActsAsRecordable
+end
