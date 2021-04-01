@@ -65,7 +65,10 @@ Rails.application.configure do
   # config.i18n.raise_on_missing_translations = true
 
   # Annotate rendered view with file names.
-  # config.action_view.annotate_rendered_view_with_filenames = true
+  config.action_view.annotate_rendered_view_with_filenames = true
+
+  # When supported default to lazy
+  # config.action_view.image_loading = "lazy"
 
   # Use an evented file watcher to asynchronously detect changes in source code,
   # routes, locales, etc. This feature depends on the listen gem.
