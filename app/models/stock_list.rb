@@ -8,5 +8,7 @@ class StockList < ApplicationRecord
   # Validations
   # Maybe supply a default name on the form of
   # like "user.first_name user.last_name's stock list"
-  validates :name, presence: true
+  validates :name,
+    presence: true,
+    length: {minimum: 2, maximum: 140}
 end

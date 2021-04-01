@@ -6,5 +6,7 @@ class FeederGroup < ApplicationRecord
   belongs_to :user
 
   # Validations
-  validates :name, presence: true
+  validates :name,
+    presence: true,
+    length: {minimum: 2, maximum: 140}
 end

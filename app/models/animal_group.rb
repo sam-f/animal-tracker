@@ -6,5 +6,7 @@ class AnimalGroup < ApplicationRecord
   has_many :animals, dependent: :destroy_async
 
   # Validations
-  validates :name, presence: true
+  validates :name,
+    presence: true,
+    length: {minimum: 2, maximum: 140}
 end

@@ -25,6 +25,9 @@ class Animal < ApplicationRecord
   has_many_attached :photos
 
   # Validations
-  validates :name, presence: true
+  validates :name,
+    presence: true,
+    length: {minimum: 2, maximum: 140}
+
   validates :sex, presence: true, inclusion: {in: SEXES}
 end

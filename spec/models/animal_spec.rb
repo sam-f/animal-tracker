@@ -15,6 +15,7 @@ RSpec.describe Animal, type: :model do
     it { should validate_presence_of :name }
     it { should validate_presence_of :sex }
     it { should validate_inclusion_of(:sex).in_array(Animal::SEXES) }
+    it { should validate_length_of(:name).is_at_least(2).is_at_most(140) }
   end
 
   describe "associations" do

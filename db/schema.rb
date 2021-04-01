@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_01_155033) do
+ActiveRecord::Schema.define(version: 2021_04_01_160601) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -42,7 +42,7 @@ ActiveRecord::Schema.define(version: 2021_04_01_155033) do
 
   create_table "animal_groups", force: :cascade do |t|
     t.integer "user_id", null: false
-    t.string "name", null: false
+    t.string "name", limit: 140, null: false
     t.text "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -52,7 +52,7 @@ ActiveRecord::Schema.define(version: 2021_04_01_155033) do
   create_table "animals", force: :cascade do |t|
     t.string "scientific_name"
     t.string "common_name"
-    t.string "name", null: false
+    t.string "name", limit: 140, null: false
     t.string "sex", limit: 1, default: "u", null: false
     t.string "age"
     t.date "birthday"
@@ -74,7 +74,7 @@ ActiveRecord::Schema.define(version: 2021_04_01_155033) do
 
   create_table "feeder_groups", force: :cascade do |t|
     t.integer "user_id", null: false
-    t.string "name", null: false
+    t.string "name", limit: 140, null: false
     t.text "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -108,7 +108,7 @@ ActiveRecord::Schema.define(version: 2021_04_01_155033) do
     t.integer "stock_list_id", null: false
     t.integer "animal_id", null: false
     t.decimal "price", precision: 10, scale: 2
-    t.string "name", null: false
+    t.string "name", limit: 140, null: false
     t.text "description"
     t.date "available_from"
     t.boolean "visible", default: true, null: false
@@ -120,7 +120,7 @@ ActiveRecord::Schema.define(version: 2021_04_01_155033) do
 
   create_table "stock_lists", force: :cascade do |t|
     t.integer "user_id", null: false
-    t.string "name", null: false
+    t.string "name", limit: 140, null: false
     t.date "available_from"
     t.text "description"
     t.boolean "visible", default: true, null: false
