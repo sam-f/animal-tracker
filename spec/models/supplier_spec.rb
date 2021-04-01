@@ -3,6 +3,11 @@
 require "rails_helper"
 
 RSpec.describe Supplier, type: :model do
+  describe "associations" do
+    it { should belong_to(:user) }
+    it { should have_many(:animals).dependent(:nullify) }
+  end
+
   describe "validations" do
     subject { FactoryBot.build(:supplier) }
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_01_160601) do
+ActiveRecord::Schema.define(version: 2021_04_01_221938) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -60,7 +60,10 @@ ActiveRecord::Schema.define(version: 2021_04_01_160601) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "animal_group_id", null: false
+    t.date "date_aquired"
+    t.integer "supplier_id"
     t.index ["animal_group_id"], name: "index_animals_on_animal_group_id"
+    t.index ["supplier_id"], name: "index_animals_on_supplier_id"
   end
 
   create_table "cleaning_records", force: :cascade do |t|
@@ -141,6 +144,8 @@ ActiveRecord::Schema.define(version: 2021_04_01_160601) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "company"
+    t.integer "user_id", null: false
+    t.index ["user_id"], name: "index_suppliers_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

@@ -7,7 +7,8 @@ RSpec.describe User, type: :model do
     it { should have_many(:animal_groups).dependent(:destroy_async) }
     it { should have_many(:animals).through(:animal_groups) }
     it { should have_many(:stock_lists).dependent(:destroy_async) }
-    it { should have_one_attached(:photo)}
+    it { should have_many(:stock_list_placements).through(:stock_lists) }
+    it { should have_one_attached(:photo) }
   end
 
   describe "validations" do

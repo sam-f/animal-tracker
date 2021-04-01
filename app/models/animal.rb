@@ -18,6 +18,7 @@ class Animal < ApplicationRecord
 
   # Associations
   belongs_to :animal_group
+  belongs_to :supplier, optional: true
   has_many :weight_records, dependent: :delete_all
   has_many :feeding_records, dependent: :delete_all
   has_many :cleaning_records, dependent: :delete_all
