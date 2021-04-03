@@ -11,6 +11,7 @@ StockList.delete_all
 StockListPlacement.delete_all
 Supplier.delete_all
 Schedule.delete_all
+ScheduleItem.delete_all
 Feeder.delete_all
 FeederGroup.delete_all
 
@@ -29,6 +30,24 @@ boss_hogs = Supplier.create!(
 
 snakes = AnimalGroup.create!(
   name: "Snakes",
+  description: "Snakes in room 3",
+  user: alex
+)
+
+lizards = AnimalGroup.create!(
+  name: "Lizards",
+  description: "Lizards in room 2",
+  user: alex
+)
+
+inverts = AnimalGroup.create!(
+  name: "Inverts",
+  description: "Inverts in room 1",
+  user: alex
+)
+
+mammals = AnimalGroup.create!(
+  name: "Mammals",
   user: alex
 )
 
@@ -98,9 +117,10 @@ FeedingRecord.create!(
 )
 
 WeightRecord.create!(
-  weight: 10.5,
+  weight: 5,
   recorded_on: Date.today,
   notes: "Scales slightly off",
+  unit: WeightRecord::KILOGRAMS,
   animal: jeff
 )
 
