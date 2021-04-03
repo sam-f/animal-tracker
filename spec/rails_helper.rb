@@ -31,6 +31,7 @@ rescue ActiveRecord::PendingMigrationError => e
   exit 1
 end
 RSpec.configure do |config|
+  config.include(ActiveSupport::Testing::Assertions)
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
 
@@ -38,6 +39,23 @@ RSpec.configure do |config|
   # examples within a transaction, remove the following line or assign false
   # instead of true.
   config.use_transactional_fixtures = true
+
+  # serviceworker.js requests are sometimes fired late after JS system tests
+  # have run. They interfere with later tests and cause intermitten failures.
+  # Since we don't need and don't test serviceworker.js we create a temporary
+  # fake in public that prevents the request getting through into Rails proper.
+  #
+  # Don't do this if we're running with parallel_tests since each process will
+  # attempt to create and delete the fake service worker file.
+  if ENV["PARALLEL"].blank?
+    FAKE_SERVICE_WORKER = File.join(Rails.root, "public", "serviceworker.js")
+    config.before(:suite) do
+      FileUtils.touch FAKE_SERVICE_WORKER
+    end
+    config.after(:suite) do
+      FileUtils.rm FAKE_SERVICE_WORKER
+    end
+  end
 
   config.include Warden::Test::Helpers
   config.include DeviseRequestHelpers, type: :request
