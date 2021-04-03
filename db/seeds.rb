@@ -9,6 +9,10 @@ WeightRecord.delete_all
 CleaningRecord.delete_all
 StockList.delete_all
 StockListPlacement.delete_all
+Supplier.delete_all
+Schedule.delete_all
+Feeder.delete_all
+FeederGroup.delete_all
 
 alex = User.create!(
   first_name: "Alex",
@@ -17,9 +21,38 @@ alex = User.create!(
   password: "secret"
 )
 
+boss_hogs = Supplier.create!(
+  name: "Boss Hogs",
+  email: "boss@hogs.com",
+  user: alex
+)
+
 snakes = AnimalGroup.create!(
   name: "Snakes",
   user: alex
+)
+
+Animal.create!(
+  animal_group: snakes,
+  name: "Jeff",
+  scientific_name: "Python Regius",
+  common_name: "Royal Python",
+  age: "5 Years",
+  birthday: Date.new(2016, 1, 1),
+  sex: Animal::MALE,
+  description: "A royal called jeff. lovely."
+)
+
+Animal.create!(
+  animal_group: snakes,
+  name: "Bonnie",
+  scientific_name: "Toxicodryas Blandingii",
+  common_name: "Blanding's Tree Snake",
+  age: "1 year",
+  sex: Animal::FEMALE,
+  description: "1/2 of Bonnie and Clyde.",
+  supplier: boss_hogs,
+  date_aquired: Date.new(2020, 6, 1)
 )
 
 snake_stock_list = StockList.create!(
@@ -58,7 +91,6 @@ large_rat = Feeder.create!(
 )
 
 FeedingRecord.create!(
-  food: "Large rat",
   recorded_on: Date.today,
   notes: "Left in overnight",
   animal: jeff,

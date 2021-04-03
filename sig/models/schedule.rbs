@@ -1,0 +1,8 @@
+class Schedule
+  REPEAT_OPTIONS: Array[String]
+  NEVER: String
+  DAILY: String
+  WEEKLY: String
+  MONTHLY: String
+  YEARLY: String
+end

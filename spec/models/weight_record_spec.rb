@@ -12,5 +12,7 @@ RSpec.describe WeightRecord, type: :model do
 
   describe "validations" do
     it { should validate_presence_of :weight }
+    it { should validate_presence_of :unit }
+    it { should validate_inclusion_of(:unit).in_array(WeightRecord::UNITS) }
   end
 end

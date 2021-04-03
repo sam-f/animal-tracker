@@ -9,7 +9,8 @@ class User < ApplicationRecord
   has_many :animals, through: :animal_groups
   has_many :stock_lists, dependent: :destroy_async
   has_many :stock_list_placements, through: :stock_lists
-  has_many :suppliers, dependent: :delete_all
+  has_many :suppliers, dependent: :destroy_async
+  has_many :schedules, dependent: :destroy_async
   has_one_attached :photo
 
   # Validations

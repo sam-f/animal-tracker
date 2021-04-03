@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_01_221938) do
+ActiveRecord::Schema.define(version: 2021_04_03_091554) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -107,6 +107,27 @@ ActiveRecord::Schema.define(version: 2021_04_01_221938) do
     t.index ["feeder_id"], name: "index_feeding_records_on_feeder_id"
   end
 
+  create_table "schedule_items", force: :cascade do |t|
+    t.integer "schedule_id", null: false
+    t.string "name", limit: 140, null: false
+    t.text "description"
+    t.integer "position"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["schedule_id"], name: "index_schedule_items_on_schedule_id"
+  end
+
+  create_table "schedules", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.string "name", limit: 140, null: false
+    t.text "description"
+    t.string "repeat", limit: 10, null: false
+    t.date "start_on", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_schedules_on_user_id"
+  end
+
   create_table "stock_list_placements", force: :cascade do |t|
     t.integer "stock_list_id", null: false
     t.integer "animal_id", null: false
@@ -169,6 +190,7 @@ ActiveRecord::Schema.define(version: 2021_04_01_221938) do
     t.text "notes"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "unit", limit: 2, null: false
     t.index ["animal_id"], name: "index_weight_records_on_animal_id"
   end
 
