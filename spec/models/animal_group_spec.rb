@@ -5,7 +5,7 @@ require "rails_helper"
 RSpec.describe AnimalGroup, type: :model do
   describe "associations" do
     it { should belong_to :user }
-    it { should have_many(:animals).dependent(:destroy_async) }
+    it { should have_many(:animals).dependent(:restrict_with_exception) }
   end
 
   describe "validations" do
