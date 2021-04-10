@@ -21,10 +21,7 @@
           </div>
           <footer class="card-footer">
             <%= link_to "Edit", edit_dashboard_animal_group_path(animal_group), class: "card-footer-item" %>
-
-            <a href="#" class="card-footer-item">
-              Animals
-            </a>
+            <%= link_to "Animals", dashboard_animals_path(animal_group_id: animal_group.id), class: "card-footer-item" %>
           </footer>
         </div>
       </div>
