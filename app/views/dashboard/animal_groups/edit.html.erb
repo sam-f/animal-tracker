@@ -1,6 +1,9 @@
 <% content_for :heading, "Edit #{@animal_group.name}" %>
 
-<%= link_to "Back", dashboard_animal_groups_path, class: "button is-primary" %>
+<div class="field is-grouped">
+  <%= link_to "Back", dashboard_animal_groups_path, class: "button is-primary control" %>
+  <%= button_to "Delete", {action: "destroy", id: @animal_group.id}, method: :delete, class: "button is-danger control" %>
+</div>
 
 <hr />
 
