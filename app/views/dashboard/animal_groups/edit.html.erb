@@ -1,0 +1,7 @@
+<% content_for :heading, "Edit #{@animal_group.name}" %>
+
+<%= link_to "Back", dashboard_animal_groups_path, class: "button is-primary" %>
+
+<hr />
+
+<%= render partial: "form" %>

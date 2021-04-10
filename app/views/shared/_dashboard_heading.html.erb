@@ -1,0 +1,12 @@
+<%# Only check heading for now %>
+<% if content_for?(:heading) %>
+  <div class="level">
+    <div class="level-left">
+      <div class="level-item">
+        <h1 class="title is-2">
+          <%= content_for(:heading) %>
+        </h1>
+      </div>
+    </div>
+  </div>
+<% end %>

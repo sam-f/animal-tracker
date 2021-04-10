@@ -11,6 +11,12 @@
   </head>
 
   <body>
-    <%= yield %>
+    <%= render partial: "shared/dashboard_nav" %>
+    <main class="container">
+      <%= render partial: "shared/dashboard_flash" %>
+      <%= render partial: "shared/dashboard_heading" %>
+
+      <%= yield %>
+    </main>
   </body>
 </html>

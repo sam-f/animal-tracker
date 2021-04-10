@@ -1,0 +1,35 @@
+<% content_for :heading, "Animal groups" %>
+
+<%= link_to "Add", new_dashboard_animal_group_path, class: "button is-primary" %>
+
+<hr />
+
+<% @animal_groups.in_groups_of(3, false).each do |group| %>
+  <div class="columns">
+    <% group.each do |animal_group| %>
+      <div class="column">
+        <div class="card">
+          <div class="card-content">
+            <div class="content">
+              <p class="title is-4">
+                <%= link_to animal_group.name, dashboard_animal_group_path(animal_group) %>
+              </p>
+              <p>
+                <%= animal_group.description %>
+              </p>
+            </div>
+          </div>
+          <footer class="card-footer">
+            <%= link_to "Edit", edit_dashboard_animal_group_path(animal_group), class: "card-footer-item" %>
+
+            <%= link_to "View", dashboard_animal_group_path(animal_group), class: "card-footer-item" %>
+
+            <a href="#" class="card-footer-item">
+              Animals
+            </a>
+          </footer>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% end %>

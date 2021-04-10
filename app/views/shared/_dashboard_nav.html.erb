@@ -1,0 +1,18 @@
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-menu">
+    <div class="navbar-start">
+      <%= link_to "Home", dashboard_root_path, class: "navbar-item" %>
+
+      <div id="animalsDropDown" class="navbar-item has-dropdown">
+        <a class="navbar-link">
+          Animals
+        </a>
+
+        <div class="navbar-dropdown">
+          <%= link_to "Animal groups", dashboard_animal_groups_path, class: "navbar-item" %>
+          <%= link_to "Animals", dashboard_animals_path, class: "navbar-item" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>

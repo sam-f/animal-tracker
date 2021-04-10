@@ -8,5 +8,8 @@ Rails.application.routes.draw do
 
   namespace :dashboard do
     root "dashboard#index"
+
+    resources :animal_groups, except: [:show].freeze
+    resources :animals
   end
 end

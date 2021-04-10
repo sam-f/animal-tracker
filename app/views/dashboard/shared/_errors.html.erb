@@ -1,0 +1,18 @@
+<% if model.errors.any? %>
+  <div class="card">
+    <div class="card-content">
+      <div id="error_explanation">
+        <h2>
+          <%= pluralize(model.errors.size, "error") %>
+          <%= " prohibited this #{string} from being saved:" %>
+        </h2>
+        <ul>
+          <% model.errors.full_messages.each do |msg|%>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <br />
+<% end %>

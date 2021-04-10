@@ -1,0 +1,30 @@
+<%= render partial: "dashboard/shared/errors", locals: {model: @animal_group, string: "animal group"} %>
+
+<%= form_with model: [:dashboard, @animal_group], local: true do |f| %>
+  <div class="field">
+    <%= f.label :name, class: "label" %>
+
+    <div class="control">
+      <%= f.text_field :name,
+        class: "input",
+        required: true,
+        maxlength: AnimalGroup::VALIDATION_CONSTANTS[:name][:max_length],
+        minlength: AnimalGroup::VALIDATION_CONSTANTS[:name][:min_length] %>
+    </div>
+    <p class="help">Required</p>
+  </div>
+
+  <div class="field">
+    <%= f.label :description, class: "label" %>
+
+    <div class="control">
+      <%= f.text_area :description, class: "textarea" %>
+    </div>
+  </div>
+
+  <div class="field is-grouped">
+    <div class="control">
+      <%= f.submit "Save", class: "button is-primary", data: {"disable-with": "Saving"} %>
+    </div>
+  </div>
+<% end %>
