@@ -53,17 +53,6 @@ mammals = AnimalGroup.create!(
 
 Animal.create!(
   animal_group: snakes,
-  name: "Jeff",
-  scientific_name: "Python Regius",
-  common_name: "Royal Python",
-  age: "5 Years",
-  birthday: Date.new(2016, 1, 1),
-  sex: Animal::MALE,
-  description: "A royal called jeff. lovely."
-)
-
-Animal.create!(
-  animal_group: snakes,
   name: "Bonnie",
   scientific_name: "Toxicodryas Blandingii",
   common_name: "Blanding's Tree Snake",
@@ -89,6 +78,15 @@ jeff = Animal.create!(
   birthday: Date.new(2016, 1, 1),
   sex: Animal::MALE,
   description: "A royal called jeff. lovely."
+)
+
+jeff_picture = File.open(
+  Rails.root.join("test-files", "bruno.jpg")
+)
+
+jeff.photo.attach(
+  io: jeff_picture,
+  filename: "bruno.jpg"
 )
 
 StockListPlacement.create!(
