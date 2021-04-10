@@ -14,6 +14,17 @@
   "version": "0.1.0",
   "devDependencies": {
     "@types/webpack-env": "^1.16.0",
+    "@typescript-eslint/eslint-plugin": "^4.21.0",
+    "@typescript-eslint/parser": "^4.21.0",
+    "eslint": "^7.24.0",
+    "eslint-config-standard": "^16.0.2",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.3.1",
+    "eslint-plugin-react": "^7.23.2",
     "webpack-dev-server": "^3.11.2"
+  },
+  "scripts": {
+    "lint:js": "yarn run eslint --ext .ts --ext .tsx --ext .js app/javascript --fix"
   }
 }
