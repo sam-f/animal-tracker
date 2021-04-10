@@ -25,6 +25,9 @@ gem "jbuilder", "~> 2.7"
 # Flexible authentication solution based on Warden
 gem "devise"
 
+# Use Draper to decorate models
+gem "draper"
+
 # Use Active Storage variant
 gem "image_processing", '~> 1.2'
 
