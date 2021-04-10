@@ -9,7 +9,25 @@ Rails.application.routes.draw do
   namespace :dashboard do
     root "dashboard#index"
 
-    resources :animal_groups, except: [:show].freeze
     resources :animals
+    resources :animal_groups,
+      except: [:show].freeze,
+      path: "animal-groups"
+
+    namespace :stock do
+      resources :stock_lists, path: "stock-lists" do
+        resources :stock_list_placements,
+          path: "stock-list-placements",
+          except: %i[show index].freeze
+      end
+    end
+
+    namespace :scheduling do
+      resources :schedules do
+        resources :schedule_items,
+          path: "schedule-items",
+          except: %i[show index].freeze
+      end
+    end
   end
 end
