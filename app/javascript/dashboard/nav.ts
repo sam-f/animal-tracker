@@ -2,7 +2,7 @@ export default () => {
   const navEl: HTMLElement = document.querySelector('#animalsDropDown')
   const html: HTMLElement = document.querySelector('html')
 
-  navEl.addEventListener('click', (event): void => {
+  navEl.addEventListener('click', (event: Event): void => {
     if (navEl.classList.contains('is-active')) {
       navEl.classList.remove('is-active')
     } else {
@@ -12,7 +12,7 @@ export default () => {
     event.stopPropagation()
   })
 
-  html.addEventListener('click', (event): void => {
+  html.addEventListener('click', (event: Event): void => {
     if (navEl.classList.contains('is-active')) {
       navEl.classList.remove('is-active')
     }
