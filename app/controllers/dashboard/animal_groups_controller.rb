@@ -2,13 +2,10 @@
 
 module Dashboard
   class AnimalGroupsController < DashboardController
-    before_action :set_animal_group, only: %i[show edit update destroy].freeze
+    before_action :set_animal_group, only: %i[edit update destroy].freeze
 
     def index
       @animal_groups = AnimalGroup.order(:name)
-    end
-
-    def show
     end
 
     def new
@@ -52,6 +49,7 @@ module Dashboard
 
     def set_animal_group
       @animal_group = AnimalGroup.find_by(id: params[:id])
+      not_found unless @animal_group.present?
     end
   end
 end
