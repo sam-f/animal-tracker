@@ -3,7 +3,7 @@
 class StockList < ApplicationRecord
   # Associations
   belongs_to :user
-  has_many :stock_list_placements
+  has_many :stock_list_placements, dependent: :destroy_async
 
   # Validations
   # Maybe supply a default name on the form of
