@@ -4,6 +4,11 @@
 
 <hr />
 
+<% unless @animal_groups.any? %>
+  <h2 class="title is-2">You haven't added any animal groups yet</h2>
+  <%= link_to "Add some here!", new_dashboard_animal_group_path, class: "button is-primary" %>
+<% end %>
+
 <% @animal_groups.in_groups_of(3, false).each do |group| %>
   <div class="columns">
     <% group.each do |animal_group| %>
