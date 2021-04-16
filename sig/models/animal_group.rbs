@@ -1,2 +1,3 @@
 class AnimalGroup < ApplicationRecord
+  VALIDATION_CONSTANTS: Hash[Symbol, Hash[Symbol, Integer | String | Symbol]]
 end
