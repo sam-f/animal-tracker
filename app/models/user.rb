@@ -5,7 +5,7 @@ class User < ApplicationRecord
     :registerable, :recoverable, :rememberable, :validatable
 
   # Associations
-  has_many :animal_groups, dependent: :destroy_async
+  has_many :animal_groups, dependent: :destroy_async, inverse_of: :user
   has_many :animals, through: :animal_groups
   has_many :stock_lists, dependent: :destroy_async
   has_many :stock_list_placements, through: :stock_lists

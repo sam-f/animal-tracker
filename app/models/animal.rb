@@ -9,6 +9,10 @@
 #   Attrs:
 #     Sort out birthday etc and use DOB
 class Animal < ApplicationRecord
+  VALIDATION_CONSTANTS = {
+    name: {max_length: 140, min_length: 2}
+  }.freeze
+
   # Constants
   SEXES = [
     MALE = "m",
@@ -17,7 +21,7 @@ class Animal < ApplicationRecord
   ].freeze
 
   # Associations
-  belongs_to :animal_group
+  belongs_to :animal_group, inverse_of: :animals
   belongs_to :supplier, optional: true
   has_many :weight_records, dependent: :delete_all
   has_many :feeding_records, dependent: :delete_all
@@ -28,7 +32,10 @@ class Animal < ApplicationRecord
   # Validations
   validates :name,
     presence: true,
-    length: {minimum: 2, maximum: 140}
+    length: {
+      minimum: VALIDATION_CONSTANTS[:name][:min_length],
+      maximum: VALIDATION_CONSTANTS[:name][:max_length]
+    }
   validates :sex, presence: true, inclusion: {in: SEXES}
 
   def optimised_photo(format: :webp)

@@ -6,8 +6,8 @@ class AnimalGroup < ApplicationRecord
   }.freeze
 
   # Associations
-  belongs_to :user
-  has_many :animals, dependent: :restrict_with_exception
+  belongs_to :user, inverse_of: :animal_groups
+  has_many :animals, dependent: :restrict_with_exception, inverse_of: :animal_group
 
   # Validations
   validates :name,
