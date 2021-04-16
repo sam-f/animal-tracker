@@ -20,6 +20,11 @@ RSpec.describe Animal, type: :model do
     it { should validate_length_of(:name).is_at_least(2).is_at_most(140) }
   end
 
+  describe "delegations" do
+    it { should delegate_method(:filename).to(:photo).allow_nil.with_prefix }
+    it { should delegate_method(:attached?).to(:photo).allow_nil.with_prefix }
+  end
+
   describe "#optimised_photo" do
     let(:animal) { FactoryBot.build(:animal) }
 

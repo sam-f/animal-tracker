@@ -38,8 +38,15 @@ class Animal < ApplicationRecord
     }
   validates :sex, presence: true, inclusion: {in: SEXES}
 
+  # Nested attributes
+  accepts_nested_attributes_for :weight_records, reject_if: :all_blank, limit: 1
+
+  # Delegations
+  delegate :filename, to: :photo, allow_nil: true, prefix: true
+  delegate :attached?, to: :photo, allow_nil: true, prefix: true
+
   def optimised_photo(format: :webp)
-    if photo.attached?
+    if photo_attached?
       photo.variant(resize_to_fill: [400, 300].freeze, convert: format, gravity: :center)
     end
   end

@@ -1,0 +1,175 @@
+<%= render partial: "dashboard/shared/errors", locals: {model: @animal, string: "animal group"} %>
+
+<%= form_with model: [:dashboard, @animal], local: true do |f| %>
+  <div class="field">
+    <%= f.label :animal_group_id, class: "label" %>
+
+    <div class="control">
+      <div class="select">
+        <%= f.select(
+            :animal_group_id, @animal_groups.collect { |animal_group| [animal_group.name, animal_group.id] },
+            {include_blank: "Choose"}, required: true
+          ) %>
+      </div>
+    </div>
+
+    <p class="help">Required</p>
+  </div>
+
+  <div class="field">
+    <%= f.label :name, class: "label" %>
+
+    <div class="control">
+      <%= f.text_field :name,
+        class: "input",
+        required: true,
+        maxlength: Animal::VALIDATION_CONSTANTS[:name][:max_length],
+        minlength: Animal::VALIDATION_CONSTANTS[:name][:min_length] %>
+    </div>
+    <p class="help">Required</p>
+  </div>
+
+  <div class="field">
+    <%= f.label :description, class: "label" %>
+
+    <div class="control">
+      <%= f.text_area :description, class: "textarea" %>
+    </div>
+  </div>
+
+  <fieldset class="field">
+    <legend class="label">Photos</legend>
+    <div class="file-container field">
+      <div class="file has-name">
+        <label class="file-label">
+          <%= f.file_field :photo, class: "file-input", accept: "image/png,image/jpeg"%>
+          <span class="file-cta">
+            <span class="file-label">
+              Choose a file
+            </span>
+          </span>
+          <% if @animal.photo_attached? %>
+            <span class="file-name">
+              <%= @animal.photo_filename %>
+            </span>
+          <% end %>
+        </label>
+      </div>
+      <% if @animal.photo_attached? %>
+        <%= link_to "Remove image", "", method: :delete, data: {confirm: t("are_you_sure")}, class: "button is-danger remove-image-btn"%>
+      <% end %>
+    </div>
+  </fieldset>
+
+  <div class="field">
+    <%= f.label :sex, class: "label" %>
+
+    <div class="control">
+      <div class="select">
+        <%= f.select(:sex, Animal::SEXES.collect { |sex| [t("sexes.#{sex}"), sex] }, {include_blank: "Choose"}, required: true) %>
+      </div>
+    </div>
+
+    <p class="help">Required</p>
+  </div>
+
+  <div class="field">
+    <%= f.label :age, class: "label" %>
+
+    <div class="control">
+      <%= f.text_field :age, class: "input" %>
+    </div>
+  </div>
+
+  <div class="field">
+    <%= f.label :date_acquired, class: "label" %>
+
+    <div class="control">
+      <%= f.date_field :date_acquired, class: "input" %>
+    </div>
+  </div>
+
+  <div class="field">
+    <%= f.label :supplier_id, class: "label" %>
+
+    <div class="control">
+      <div class="select">
+        <%= f.select(
+            :supplier_id, @suppliers.collect { |supplier| [supplier.name, supplier.id] },
+            {include_blank: "Choose"}
+          ) %>
+      </div>
+    </div>
+    <a href="#" class="help tag is-link">Add supplier here</a>
+  </div>
+
+  <div class="field">
+    <%= f.label :scientific_name, class: "label" %>
+
+    <div class="control">
+      <%= f.text_field :scientific_name, class: "input", list: "scientific-names", autocomplete: "off" %>
+
+      <datalist id="scientific-names">
+        <% @scientific_names.each do |scientific_name| %>
+          <option value="<%= scientific_name %>">
+        <% end %>
+      </datalist>
+    </div>
+  </div>
+
+  <div class="field">
+    <%= f.label :common_name, class: "label" %>
+
+    <div class="control">
+      <%= f.text_field :common_name, class: "input", list: "common-names", autocomplete: "off" %>
+
+      <datalist id="common-names">
+        <% @common_names.each do |common_name| %>
+          <option value="<%= common_name %>">
+        <% end %>
+      </datalist>
+    </div>
+  </div>
+
+  <% if @animal.new_record? %>
+    <hr />
+
+    <button class="add-weight-record button is-primary field" type="button">Add current weight (optional)</button>
+
+    <%= fields_for WeightRecord.new do |ff| %>
+      <section class="animal-weight-record-fields">
+        <div class="field">
+          <%= ff.label :weight, class: "label" %>
+
+          <div class="control">
+            <%= f.number_field :weight, class: "input", data: {weight_record: true}, disabled: true %>
+          </div>
+        </div>
+
+        <div class="field">
+          <%= ff.label :recorded_on, class: "label" %>
+
+          <div class="control">
+            <%= f.date_field :recorded_on, class: "input", data: {weight_record: true}, disabled: true %>
+          </div>
+        </div>
+
+        <div class="field">
+          <%= ff.label :notes, class: "label" %>
+
+          <div class="control">
+            <%= ff.text_area :notes, class: "textarea", data: {weight_record: true}, disabled: true %>
+          </div>
+        </div>
+      </section>
+    <% end %>
+  <% end %>
+
+  <hr />
+
+  <div class="field is-grouped">
+    <div class="control">
+      <%= f.submit "Save", class: "button is-primary", data: {"disable-with": "Saving"} %>
+    </div>
+  </div>
+<% end %>

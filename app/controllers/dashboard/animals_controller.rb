@@ -3,6 +3,10 @@
 module Dashboard
   class AnimalsController < DashboardController
     before_action :set_animal, only: %i[edit show update destroy].freeze
+    before_action :set_scientific_names, only: %i[new edit create update].freeze
+    before_action :set_common_names, only: %i[new edit create update].freeze
+    before_action :set_animal_groups, only: %i[new edit create update].freeze
+    before_action :set_suppliers, only: %i[new edit create update].freeze
     before_action :try_set_animal_group
 
     def index
@@ -57,7 +61,7 @@ module Dashboard
         .require(:animal)
         .permit(
           :animal_group_id, :age, :birthday,
-          :common_name, :date_aquired, :description,
+          :common_name, :date_acquired, :description,
           :name, :sex, :supplier_id, :scientific_name
         )
     end
@@ -70,6 +74,32 @@ module Dashboard
     def try_set_animal_group
       return unless params[:animal_group_id].present?
       @animal_group = AnimalGroup.find_by(id: params[:animal_group_id])
+    end
+
+    def set_animal_groups
+      @animal_groups = current_user.animal_groups
+    end
+
+    def set_suppliers
+      @suppliers = current_user.suppliers
+    end
+
+    def set_scientific_names
+      @scientific_names = current_user
+        .animals
+        .pluck(:scientific_name)
+        .uniq
+        .compact
+        .freeze
+    end
+
+    def set_common_names
+      @common_names = current_user
+        .animals
+        .pluck(:common_name)
+        .uniq
+        .compact
+        .freeze
     end
   end
 end
