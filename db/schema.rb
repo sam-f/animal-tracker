@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_11_122421) do
+ActiveRecord::Schema.define(version: 2021_04_16_193025) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -55,12 +55,11 @@ ActiveRecord::Schema.define(version: 2021_04_11_122421) do
     t.string "name", limit: 140, null: false
     t.string "sex", limit: 1, default: "u", null: false
     t.string "age"
-    t.date "birthday"
     t.text "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "animal_group_id", null: false
-    t.date "date_aquired"
+    t.date "date_acquired"
     t.integer "supplier_id"
     t.index ["animal_group_id"], name: "index_animals_on_animal_group_id"
     t.index ["supplier_id"], name: "index_animals_on_supplier_id"
@@ -199,4 +198,5 @@ ActiveRecord::Schema.define(version: 2021_04_11_122421) do
   add_foreign_key "animal_groups", "users", on_delete: :cascade
   add_foreign_key "animals", "animal_groups", on_delete: :cascade
   add_foreign_key "stock_list_placements", "stock_lists", on_delete: :cascade
+  add_foreign_key "stock_lists", "users", on_delete: :cascade
 end

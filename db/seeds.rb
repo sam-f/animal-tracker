@@ -60,7 +60,7 @@ Animal.create!(
   sex: Animal::FEMALE,
   description: "1/2 of Bonnie and Clyde.",
   supplier: boss_hogs,
-  date_aquired: Date.new(2020, 6, 1)
+  date_acquired: Date.new(2020, 6, 1)
 )
 
 snake_stock_list = StockList.create!(
@@ -75,7 +75,6 @@ jeff = Animal.create!(
   scientific_name: "Python Regius",
   common_name: "Royal Python",
   age: "5 Years",
-  birthday: Date.new(2016, 1, 1),
   sex: Animal::MALE,
   description: "A royal called jeff. lovely."
 )
