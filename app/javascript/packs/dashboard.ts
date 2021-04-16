@@ -6,13 +6,14 @@
 import Rails from '@rails/ujs'
 import * as ActiveStorage from '@rails/activestorage'
 import 'channels'
+import documentReady from '../helpers/documentReady'
 import nav from '../dashboard/nav'
 import animalWeightRecord from '../dashboard/animalWeightRecord'
 
 Rails.start()
 ActiveStorage.start()
 
-document.addEventListener('turbolinks:load', () => {
+documentReady(() => {
   nav()
   animalWeightRecord()
 })
