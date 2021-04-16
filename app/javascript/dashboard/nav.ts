@@ -1,4 +1,4 @@
-export default () => {
+export default (): void => {
   const navEl: HTMLElement = document.querySelector('#animalsDropDown')
   const html: HTMLElement = document.querySelector('html')
 

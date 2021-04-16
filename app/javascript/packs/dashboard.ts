@@ -8,6 +8,7 @@ import Turbolinks from 'turbolinks'
 import * as ActiveStorage from '@rails/activestorage'
 import 'channels'
 import nav from '../dashboard/nav'
+import animalWeightRecord from '../dashboard/animalWeightRecord'
 
 Rails.start()
 Turbolinks.start()
@@ -15,4 +16,5 @@ ActiveStorage.start()
 
 document.addEventListener('turbolinks:load', () => {
   nav()
+  animalWeightRecord()
 })
