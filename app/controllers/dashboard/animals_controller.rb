@@ -60,14 +60,14 @@ module Dashboard
       params
         .require(:animal)
         .permit(
-          :animal_group_id, :age, :birthday,
-          :common_name, :date_acquired, :description,
-          :name, :sex, :supplier_id, :scientific_name
+          :animal_group_id, :age, :common_name,
+          :date_acquired, :description,
+          :name, :sex, :source, :supplier_id, :scientific_name
         )
     end
 
     def set_animal
-      @animal = Animal.find_by(id: params[:id])
+      @animal = current_user.animals.find_by(id: params[:id])
       not_found unless @animal.present?
     end
 

@@ -31,6 +31,11 @@
 
 en:
   sexes:
-    f: "Female"
-    m: "Male"
-    u: "Unknown"
+    f: Female
+    m: Male
+    u: Unknown
+  sources:
+    cb: Captive bred (CB)
+    ltc: Long term captive (LTC)
+    wc: Wild caught (WC)
+    u: Unknown

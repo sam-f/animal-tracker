@@ -90,6 +90,18 @@
   </div>
 
   <div class="field">
+    <%= f.label :source, class: "label" %>
+
+    <div class="control">
+      <div class="select">
+        <%= f.select(:source, Animal::SOURCES.collect { |source| [t("sources.#{source}"), source] }, {include_blank: "Choose"}, required: true) %>
+      </div>
+    </div>
+
+    <p class="help">Required</p>
+  </div>
+
+  <div class="field">
     <%= f.label :supplier_id, class: "label" %>
 
     <div class="control">
@@ -130,40 +142,6 @@
       </datalist>
     </div>
   </div>
-
-  <% if @animal.new_record? %>
-    <hr />
-
-    <button class="add-weight-record button is-primary field" type="button">Add current weight (optional)</button>
-
-    <%= fields_for WeightRecord.new do |ff| %>
-      <section class="animal-weight-record-fields">
-        <div class="field">
-          <%= ff.label :weight, class: "label" %>
-
-          <div class="control">
-            <%= f.number_field :weight, class: "input", data: {weight_record: true}, disabled: true %>
-          </div>
-        </div>
-
-        <div class="field">
-          <%= ff.label :recorded_on, class: "label" %>
-
-          <div class="control">
-            <%= f.date_field :recorded_on, class: "input", data: {weight_record: true}, disabled: true %>
-          </div>
-        </div>
-
-        <div class="field">
-          <%= ff.label :notes, class: "label" %>
-
-          <div class="control">
-            <%= ff.text_area :notes, class: "textarea", data: {weight_record: true}, disabled: true %>
-          </div>
-        </div>
-      </section>
-    <% end %>
-  <% end %>
 
   <hr />
 

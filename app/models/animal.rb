@@ -17,7 +17,14 @@ class Animal < ApplicationRecord
   SEXES = [
     MALE = "m",
     FEMALE = "f",
-    UNKNOWN = "u"
+    UNKNOWN_SEX = "u"
+  ].freeze
+
+  SOURCES = [
+    CB = "cb",
+    WC = "wc",
+    LTC = "ltc",
+    UNKNOWN_SOURCE = "u"
   ].freeze
 
   # Associations
@@ -37,9 +44,7 @@ class Animal < ApplicationRecord
       maximum: VALIDATION_CONSTANTS[:name][:max_length]
     }
   validates :sex, presence: true, inclusion: {in: SEXES}
-
-  # Nested attributes
-  accepts_nested_attributes_for :weight_records, reject_if: :all_blank, limit: 1
+  validates :source, presence: true, inclusion: {in: SOURCES}
 
   # Delegations
   delegate :filename, to: :photo, allow_nil: true, prefix: true

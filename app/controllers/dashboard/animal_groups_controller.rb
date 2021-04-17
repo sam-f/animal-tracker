@@ -48,7 +48,7 @@ module Dashboard
     end
 
     def set_animal_group
-      @animal_group = AnimalGroup.find_by(id: params[:id])
+      @animal_group = current_user.animal_groups.find_by(id: params[:id])
       not_found unless @animal_group.present?
     end
   end

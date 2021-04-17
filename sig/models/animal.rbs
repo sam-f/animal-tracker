@@ -5,5 +5,11 @@ class Animal < ApplicationRecord
   SEXES: Array[String]
   MALE: String
   FEMALE: String
-  UNKNOWN: String
+  UNKNOW_SEX: String
+
+  SOURCES: Array[String]
+  CB: String
+  LTC: String
+  WC: String
+  UNKNOWN_SOURCE: String
 end
