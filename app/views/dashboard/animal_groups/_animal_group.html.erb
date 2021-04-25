@@ -1,0 +1,18 @@
+<div class="column">
+  <div class="card">
+    <div class="card-content">
+      <div class="content">
+        <p class="title is-4">
+          <%= link_to animal_group.name, dashboard_animals_path(animal_group_id: animal_group.id) %>
+        </p>
+        <p>
+          <%= animal_group.description %>
+        </p>
+      </div>
+    </div>
+    <footer class="card-footer">
+      <%= link_to "Edit", edit_dashboard_animal_group_path(animal_group), class: "card-footer-item" %>
+      <%= link_to "Animals", dashboard_animals_path(animal_group_id: animal_group.id), class: "card-footer-item" %>
+    </footer>
+  </div>
+</div>

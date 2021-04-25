@@ -11,25 +11,7 @@
 
 <% @animal_groups.in_groups_of(3, false).each do |group| %>
   <div class="columns">
-    <% group.each do |animal_group| %>
-      <div class="column">
-        <div class="card">
-          <div class="card-content">
-            <div class="content">
-              <p class="title is-4">
-                <%= link_to animal_group.name, "#" %>
-              </p>
-              <p>
-                <%= animal_group.description %>
-              </p>
-            </div>
-          </div>
-          <footer class="card-footer">
-            <%= link_to "Edit", edit_dashboard_animal_group_path(animal_group), class: "card-footer-item" %>
-            <%= link_to "Animals", dashboard_animals_path(animal_group_id: animal_group.id), class: "card-footer-item" %>
-          </footer>
-        </div>
-      </div>
-    <% end %>
+    <%# renders _animal_group.html.erb %>
+    <%= render group, cached: true %>
   </div>
 <% end %>
