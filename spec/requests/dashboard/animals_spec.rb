@@ -83,7 +83,7 @@ RSpec.describe "Animals dashboard", type: :request do
   end
 
   describe "GET /dashboard/animals/:id/edit" do
-    let(:animal) { FactoryBot.create(:animal) }
+    let(:animal) { FactoryBot.create(:animal, animal_group: snakes) }
 
     before do
       get edit_dashboard_animal_path(animal)
@@ -92,10 +92,14 @@ RSpec.describe "Animals dashboard", type: :request do
     it "renders the edit form" do
       assert_select "form[action='#{dashboard_animal_path(animal)}']"
     end
+
+    it "responds 200 ok" do
+      expect(response.status).to eq 200
+    end
   end
 
   describe "PATCH /dashboard/animals/:id" do
-    let(:animal) { FactoryBot.create(:animal, name: "Jeff") }
+    let(:animal) { FactoryBot.create(:animal, name: "Jeff", animal_group: snakes) }
 
     context "with valid input" do
       before do
@@ -144,7 +148,7 @@ RSpec.describe "Animals dashboard", type: :request do
   end
 
   describe "DELETE /dashboard/animals/:id" do
-    let(:animal) { FactoryBot.create(:animal) }
+    let(:animal) { FactoryBot.create(:animal, animal_group: snakes) }
 
     def perform
       delete dashboard_animal_path(animal)
