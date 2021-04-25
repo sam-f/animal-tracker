@@ -27,4 +27,29 @@ RSpec.describe User, type: :model do
     it { should allow_value("sam@example.weirdDomain").for(:email) }
     it { should_not allow_value("email@f").for(:email) }
   end
+
+  shared_examples_for "an extractor of animal attributes" do |attribute|
+    describe "##{attribute}s" do
+      let(:user) { FactoryBot.create(:user, animal_groups: [animal_group]) }
+      let(:animal_group) { FactoryBot.create(:animal_group, animals: animals) }
+      let(:animals) {
+        [
+          FactoryBot.create(:animal, "#{attribute}": "Boiga Dendrophila"),
+          FactoryBot.create(:animal, "#{attribute}": "Grammastola Pulchra"),
+          FactoryBot.create(:animal, "#{attribute}": "Grammastola Pulchra"),
+          FactoryBot.create(:animal, "#{attribute}": nil)
+        ]
+      }
+
+      subject { user.send("#{attribute}s") }
+
+      it { should eq ["Boiga Dendrophila", "Grammastola Pulchra"] }
+      it { should be_frozen }
+      # _Not_ an active record collection.
+      it { should be_an Array }
+    end
+  end
+
+  it_behaves_like "an extractor of animal attributes", :scientific_name
+  it_behaves_like "an extractor of animal attributes", :common_name
 end

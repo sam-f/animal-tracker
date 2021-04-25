@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class User < ApplicationRecord
+  include AttributeExtractor
+
   devise :database_authenticatable,
     :registerable, :recoverable, :rememberable, :validatable
 
@@ -21,4 +23,12 @@ class User < ApplicationRecord
     uniqueness: {case_insensitive: true},
     format: {with: Email::Address::VALID_FORMAT},
     length: {minimum: 3, maximum: 254}
+
+  def scientific_names
+    extract_attribute_from(:animals, :scientific_name)
+  end
+
+  def common_names
+    extract_attribute_from(:animals, :common_name)
+  end
 end

@@ -3,10 +3,7 @@
 module Dashboard
   class AnimalsController < DashboardController
     before_action :set_animal, only: %i[edit show update destroy].freeze
-    before_action :set_scientific_names, only: %i[new edit create update].freeze
-    before_action :set_common_names, only: %i[new edit create update].freeze
-    before_action :set_animal_groups, only: %i[new edit create update].freeze
-    before_action :set_suppliers, only: %i[new edit create update].freeze
+    before_action :set_related_records, only: %i[new edit create update].freeze
     before_action :try_set_animal_group
 
     def index
@@ -76,30 +73,12 @@ module Dashboard
       @animal_group = AnimalGroup.find_by(id: params[:animal_group_id])
     end
 
-    def set_animal_groups
+    def set_related_records
       @animal_groups = current_user.animal_groups
-    end
-
-    def set_suppliers
       @suppliers = current_user.suppliers
-    end
-
-    def set_scientific_names
-      @scientific_names = current_user
-        .animals
-        .pluck(:scientific_name)
-        .uniq
-        .compact
-        .freeze
-    end
-
-    def set_common_names
-      @common_names = current_user
-        .animals
-        .pluck(:common_name)
-        .uniq
-        .compact
-        .freeze
+      # Not ActiveRecord collections
+      @scientific_names = current_user.scientific_names
+      @common_names = current_user.common_names
     end
   end
 end
