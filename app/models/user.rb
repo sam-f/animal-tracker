@@ -24,11 +24,7 @@ class User < ApplicationRecord
     format: {with: Email::Address::VALID_FORMAT},
     length: {minimum: 3, maximum: 254}
 
-  def scientific_names
-    extract_attribute_from(:animals, :scientific_name)
-  end
+  def scientific_names = extract_attribute_from(:animals, :scientific_name)
 
-  def common_names
-    extract_attribute_from(:animals, :common_name)
-  end
+  def common_names = extract_attribute_from(:animals, :common_name)
 end
