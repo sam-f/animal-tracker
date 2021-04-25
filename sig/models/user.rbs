@@ -1,2 +1,6 @@
 class User < ApplicationRecord
+  include AttributeExtractor
+
+  def scientific_names: (Symbol, Symbol) -> Array[String]
+  def common_names: (Symbol, Symbol) -> Array[String]
 end
