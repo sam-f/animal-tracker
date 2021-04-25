@@ -81,7 +81,7 @@ RSpec.describe "Animal groups dashboard", type: :request do
   end
 
   describe "GET /dashboard/animal_groups/:id/edit" do
-    let(:animal_group) { FactoryBot.create(:animal_group) }
+    let(:animal_group) { FactoryBot.create(:animal_group, user: user) }
 
     before do
       get edit_dashboard_animal_group_path(animal_group)
@@ -93,7 +93,7 @@ RSpec.describe "Animal groups dashboard", type: :request do
   end
 
   describe "PATCH /dashboard/animal_groups/:id" do
-    let(:animal_group) { FactoryBot.create(:animal_group, name: "Snakes") }
+    let(:animal_group) { FactoryBot.create(:animal_group, name: "Snakes", user: user) }
 
     context "with valid input" do
       before do
@@ -142,7 +142,7 @@ RSpec.describe "Animal groups dashboard", type: :request do
   end
 
   describe "DELETE /dashboard/animal_groups/:id" do
-    let(:animal_group) { FactoryBot.create(:animal_group) }
+    let(:animal_group) { FactoryBot.create(:animal_group, user: user) }
 
     def perform
       delete dashboard_animal_group_path(animal_group)

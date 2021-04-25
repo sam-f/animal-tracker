@@ -11,7 +11,6 @@
 
 <% @animal_groups.in_groups_of(3, false).each do |group| %>
   <div class="columns">
-    <%# renders _animal_group.html.erb %>
-    <%= render group, cached: true %>
+    <%= render partial: "dashboard/animal_groups/animal_group", collection: group, cached: true %>
   </div>
 <% end %>
