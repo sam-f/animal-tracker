@@ -12,17 +12,17 @@
 
 ActiveRecord::Schema.define(version: 2021_04_17_212352) do
 
-  create_table "active_storage_attachments", force: :cascade do |t|
+  create_table "active_storage_attachments", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
-    t.integer "record_id", null: false
-    t.integer "blob_id", null: false
+    t.bigint "record_id", null: false
+    t.bigint "blob_id", null: false
     t.datetime "created_at", null: false
     t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
     t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
   end
 
-  create_table "active_storage_blobs", force: :cascade do |t|
+  create_table "active_storage_blobs", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
     t.string "key", null: false
     t.string "filename", null: false
     t.string "content_type"
@@ -34,14 +34,14 @@ ActiveRecord::Schema.define(version: 2021_04_17_212352) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
-  create_table "active_storage_variant_records", force: :cascade do |t|
-    t.integer "blob_id", null: false
+  create_table "active_storage_variant_records", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
+    t.bigint "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
-  create_table "animal_groups", force: :cascade do |t|
-    t.integer "user_id", null: false
+  create_table "animal_groups", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
+    t.bigint "user_id", null: false
     t.string "name", limit: 140, null: false
     t.text "description"
     t.datetime "created_at", precision: 6, null: false
@@ -49,7 +49,7 @@ ActiveRecord::Schema.define(version: 2021_04_17_212352) do
     t.index ["user_id"], name: "index_animal_groups_on_user_id"
   end
 
-  create_table "animals", force: :cascade do |t|
+  create_table "animals", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
     t.string "scientific_name"
     t.string "common_name"
     t.string "name", limit: 140, null: false
@@ -58,16 +58,16 @@ ActiveRecord::Schema.define(version: 2021_04_17_212352) do
     t.text "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "animal_group_id", null: false
+    t.bigint "animal_group_id", null: false
     t.date "date_acquired"
-    t.integer "supplier_id"
+    t.bigint "supplier_id"
     t.string "source", limit: 3, default: "cb", null: false
     t.index ["animal_group_id"], name: "index_animals_on_animal_group_id"
     t.index ["supplier_id"], name: "index_animals_on_supplier_id"
   end
 
-  create_table "cleaning_records", force: :cascade do |t|
-    t.integer "animal_id", null: false
+  create_table "cleaning_records", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
+    t.bigint "animal_id", null: false
     t.date "recorded_on", null: false
     t.text "notes"
     t.datetime "created_at", precision: 6, null: false
@@ -75,8 +75,8 @@ ActiveRecord::Schema.define(version: 2021_04_17_212352) do
     t.index ["animal_id"], name: "index_cleaning_records_on_animal_id"
   end
 
-  create_table "feeder_groups", force: :cascade do |t|
-    t.integer "user_id", null: false
+  create_table "feeder_groups", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
+    t.bigint "user_id", null: false
     t.string "name", limit: 140, null: false
     t.text "description"
     t.datetime "created_at", precision: 6, null: false
@@ -84,8 +84,8 @@ ActiveRecord::Schema.define(version: 2021_04_17_212352) do
     t.index ["user_id"], name: "index_feeder_groups_on_user_id"
   end
 
-  create_table "feeders", force: :cascade do |t|
-    t.integer "feeder_group_id", null: false
+  create_table "feeders", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
+    t.bigint "feeder_group_id", null: false
     t.string "name", limit: 140, null: false
     t.integer "count", default: 0, null: false
     t.decimal "weight", precision: 10, scale: 3
@@ -96,19 +96,19 @@ ActiveRecord::Schema.define(version: 2021_04_17_212352) do
     t.index ["feeder_group_id"], name: "index_feeders_on_feeder_group_id"
   end
 
-  create_table "feeding_records", force: :cascade do |t|
-    t.integer "animal_id", null: false
+  create_table "feeding_records", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
+    t.bigint "animal_id", null: false
     t.text "notes"
     t.date "recorded_on", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "feeder_id"
+    t.bigint "feeder_id"
     t.index ["animal_id"], name: "index_feeding_records_on_animal_id"
     t.index ["feeder_id"], name: "index_feeding_records_on_feeder_id"
   end
 
-  create_table "schedule_items", force: :cascade do |t|
-    t.integer "schedule_id", null: false
+  create_table "schedule_items", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
+    t.bigint "schedule_id", null: false
     t.string "name", limit: 140, null: false
     t.text "description"
     t.integer "position"
@@ -117,8 +117,8 @@ ActiveRecord::Schema.define(version: 2021_04_17_212352) do
     t.index ["schedule_id"], name: "index_schedule_items_on_schedule_id"
   end
 
-  create_table "schedules", force: :cascade do |t|
-    t.integer "user_id", null: false
+  create_table "schedules", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
+    t.bigint "user_id", null: false
     t.string "name", limit: 140, null: false
     t.text "description"
     t.string "repeat", limit: 10, null: false
@@ -128,9 +128,9 @@ ActiveRecord::Schema.define(version: 2021_04_17_212352) do
     t.index ["user_id"], name: "index_schedules_on_user_id"
   end
 
-  create_table "stock_list_placements", force: :cascade do |t|
-    t.integer "stock_list_id", null: false
-    t.integer "animal_id", null: false
+  create_table "stock_list_placements", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
+    t.bigint "stock_list_id", null: false
+    t.bigint "animal_id", null: false
     t.decimal "price", precision: 10, scale: 2
     t.string "name", limit: 140, null: false
     t.text "description"
@@ -142,8 +142,8 @@ ActiveRecord::Schema.define(version: 2021_04_17_212352) do
     t.index ["stock_list_id"], name: "index_stock_list_placements_on_stock_list_id"
   end
 
-  create_table "stock_lists", force: :cascade do |t|
-    t.integer "user_id", null: false
+  create_table "stock_lists", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
+    t.bigint "user_id", null: false
     t.string "name", limit: 140, null: false
     t.date "available_from"
     t.text "description"
@@ -153,7 +153,7 @@ ActiveRecord::Schema.define(version: 2021_04_17_212352) do
     t.index ["user_id"], name: "index_stock_lists_on_user_id"
   end
 
-  create_table "suppliers", force: :cascade do |t|
+  create_table "suppliers", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
     t.string "name", limit: 140, null: false
     t.string "email", limit: 254
     t.string "phone_number"
@@ -165,11 +165,11 @@ ActiveRecord::Schema.define(version: 2021_04_17_212352) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "company"
-    t.integer "user_id", null: false
+    t.bigint "user_id", null: false
     t.index ["user_id"], name: "index_suppliers_on_user_id"
   end
 
-  create_table "users", force: :cascade do |t|
+  create_table "users", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
     t.string "first_name", limit: 80, null: false
     t.string "last_name", limit: 80, null: false
     t.string "email", limit: 254, null: false
@@ -183,10 +183,10 @@ ActiveRecord::Schema.define(version: 2021_04_17_212352) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  create_table "weight_records", force: :cascade do |t|
+  create_table "weight_records", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
     t.decimal "weight", precision: 10, scale: 3, null: false
     t.date "recorded_on", null: false
-    t.integer "animal_id", null: false
+    t.bigint "animal_id", null: false
     t.text "notes"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

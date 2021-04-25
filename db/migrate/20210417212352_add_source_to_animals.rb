@@ -1,5 +1,190 @@
 class AddSourceToAnimals < ActiveRecord::Migration[6.1]
-  def change
-    add_column :animals, :source, :string, limit: 3, null: false, default: "cb"
+  create_table "active_storage_attachments", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "record_type", null: false
+    t.bigint "record_id", null: false
+    t.bigint "blob_id", null: false
+    t.datetime "created_at", null: false
+    t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
+    t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
   end
+
+  create_table "active_storage_blobs", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
+    t.string "key", null: false
+    t.string "filename", null: false
+    t.string "content_type"
+    t.text "metadata"
+    t.string "service_name", null: false
+    t.bigint "byte_size", null: false
+    t.string "checksum", null: false
+    t.datetime "created_at", null: false
+    t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
+
+  create_table "active_storage_variant_records", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
+    t.bigint "blob_id", null: false
+    t.string "variation_digest", null: false
+    t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
+  end
+
+  create_table "animal_groups", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "name", limit: 140, null: false
+    t.text "description"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_animal_groups_on_user_id"
+  end
+
+  create_table "animals", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
+    t.string "scientific_name"
+    t.string "common_name"
+    t.string "name", limit: 140, null: false
+    t.string "sex", limit: 1, default: "u", null: false
+    t.string "age"
+    t.text "description"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "animal_group_id", null: false
+    t.date "date_acquired"
+    t.bigint "supplier_id"
+    t.string "source", limit: 3, default: "cb", null: false
+    t.index ["animal_group_id"], name: "index_animals_on_animal_group_id"
+    t.index ["supplier_id"], name: "index_animals_on_supplier_id"
+  end
+
+  create_table "cleaning_records", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
+    t.bigint "animal_id", null: false
+    t.date "recorded_on", null: false
+    t.text "notes"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["animal_id"], name: "index_cleaning_records_on_animal_id"
+  end
+
+  create_table "feeder_groups", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "name", limit: 140, null: false
+    t.text "description"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_feeder_groups_on_user_id"
+  end
+
+  create_table "feeders", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
+    t.bigint "feeder_group_id", null: false
+    t.string "name", limit: 140, null: false
+    t.integer "count", default: 0, null: false
+    t.decimal "weight", precision: 10, scale: 3
+    t.decimal "cost", precision: 10, scale: 2
+    t.text "description"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["feeder_group_id"], name: "index_feeders_on_feeder_group_id"
+  end
+
+  create_table "feeding_records", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
+    t.bigint "animal_id", null: false
+    t.text "notes"
+    t.date "recorded_on", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "feeder_id"
+    t.index ["animal_id"], name: "index_feeding_records_on_animal_id"
+    t.index ["feeder_id"], name: "index_feeding_records_on_feeder_id"
+  end
+
+  create_table "schedule_items", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
+    t.bigint "schedule_id", null: false
+    t.string "name", limit: 140, null: false
+    t.text "description"
+    t.integer "position"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["schedule_id"], name: "index_schedule_items_on_schedule_id"
+  end
+
+  create_table "schedules", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "name", limit: 140, null: false
+    t.text "description"
+    t.string "repeat", limit: 10, null: false
+    t.date "start_on", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_schedules_on_user_id"
+  end
+
+  create_table "stock_list_placements", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
+    t.bigint "stock_list_id", null: false
+    t.bigint "animal_id", null: false
+    t.decimal "price", precision: 10, scale: 2
+    t.string "name", limit: 140, null: false
+    t.text "description"
+    t.date "available_from"
+    t.boolean "visible", default: true, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["animal_id"], name: "index_stock_list_placements_on_animal_id"
+    t.index ["stock_list_id"], name: "index_stock_list_placements_on_stock_list_id"
+  end
+
+  create_table "stock_lists", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "name", limit: 140, null: false
+    t.date "available_from"
+    t.text "description"
+    t.boolean "visible", default: true, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_stock_lists_on_user_id"
+  end
+
+  create_table "suppliers", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
+    t.string "name", limit: 140, null: false
+    t.string "email", limit: 254
+    t.string "phone_number"
+    t.string "address_line_1"
+    t.string "address_line_2"
+    t.string "address_line_3"
+    t.text "description"
+    t.string "website"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "company"
+    t.bigint "user_id", null: false
+    t.index ["user_id"], name: "index_suppliers_on_user_id"
+  end
+
+  create_table "users", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
+    t.string "first_name", limit: 80, null: false
+    t.string "last_name", limit: 80, null: false
+    t.string "email", limit: 254, null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
+  create_table "weight_records", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
+    t.decimal "weight", precision: 10, scale: 3, null: false
+    t.date "recorded_on", null: false
+    t.bigint "animal_id", null: false
+    t.text "notes"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "unit", limit: 2, null: false
+    t.index ["animal_id"], name: "index_weight_records_on_animal_id"
+  end
+
+  add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "animal_groups", "users", on_delete: :cascade
+  add_foreign_key "animals", "animal_groups", on_delete: :cascade
+  add_foreign_key "stock_list_placements", "stock_lists", on_delete: :cascade
+  add_foreign_key "stock_lists", "users", on_delete: :cascade
 end
