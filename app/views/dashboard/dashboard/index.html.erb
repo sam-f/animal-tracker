@@ -1,1 +1,7 @@
 <% content_for :heading, "Dashboard" %>
+
+<div class="chart-container">
+  <canvas id="activityChart" data-controller="chart" height="200"></canvas>
+</div>
+
+<%= turbo_frame_tag :upcoming_tasks, src: upcoming_tasks_dashboard_scheduling_schedules_path %>

@@ -27,6 +27,10 @@ Rails.application.routes.draw do
         resources :schedule_items,
           path: "schedule-items",
           except: %i[show index].freeze
+
+        collection do
+          get "upcoming" => "schedule_items#upcoming", :as => :upcoming_tasks
+        end
       end
     end
   end

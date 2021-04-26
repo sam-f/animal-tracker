@@ -1,0 +1,14 @@
+<%= turbo_frame_tag :upcoming_tasks do %>
+  <section class="box">
+    <h2 class="title is-3">Your upcoming tasks</h2>
+    <hr />
+
+    <% @schedule_items.each do |schedule_item| %>
+      <p><%= schedule_item.name %></p>
+      <p><%= schedule_item.description %></p>
+      <hr />
+    <% end %>
+
+    <%= link_to "Add another", "#", class: "button is-primary" %>
+  </section>
+<% end %>
