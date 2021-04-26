@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_17_212352) do
+ActiveRecord::Schema.define(version: 2021_04_26_183622) do
 
   create_table "active_storage_attachments", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
     t.string "name", null: false
@@ -128,6 +128,20 @@ ActiveRecord::Schema.define(version: 2021_04_17_212352) do
     t.index ["user_id"], name: "index_schedules_on_user_id"
   end
 
+  create_table "species", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "genus", limit: 140
+    t.string "species", limit: 140
+    t.string "subspecies", limit: 140
+    t.string "locality", limit: 140
+    t.string "common_name", limit: 140
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["genus"], name: "index_species_on_genus"
+    t.index ["species"], name: "index_species_on_species"
+    t.index ["user_id"], name: "index_species_on_user_id"
+  end
+
   create_table "stock_list_placements", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
     t.bigint "stock_list_id", null: false
     t.bigint "animal_id", null: false
@@ -198,6 +212,7 @@ ActiveRecord::Schema.define(version: 2021_04_17_212352) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "animal_groups", "users", on_delete: :cascade
   add_foreign_key "animals", "animal_groups", on_delete: :cascade
+  add_foreign_key "species", "users", on_delete: :cascade
   add_foreign_key "stock_list_placements", "stock_lists", on_delete: :cascade
   add_foreign_key "stock_lists", "users", on_delete: :cascade
 end
