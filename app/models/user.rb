@@ -12,7 +12,8 @@ class User < ApplicationRecord
   has_many :stock_lists, dependent: :destroy_async
   has_many :stock_list_placements, through: :stock_lists
   has_many :suppliers, dependent: :destroy_async
-  has_many :schedules, dependent: :destroy_async
+  has_many :schedules, dependent: :destroy_async, inverse_of: :user
+  has_many :schedule_items, through: :schedules
   has_one_attached :photo
 
   # Validations

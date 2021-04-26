@@ -9,7 +9,8 @@ RSpec.describe User, type: :model do
     it { should have_many(:stock_lists).dependent(:destroy_async) }
     it { should have_many(:stock_list_placements).through(:stock_lists) }
     it { should have_many(:suppliers).dependent(:destroy_async) }
-    it { should have_many(:schedules).dependent(:destroy_async) }
+    it { should have_many(:schedules).dependent(:destroy_async).inverse_of(:user) }
+    it { should have_many(:schedule_items).through(:schedules) }
     it { should have_one_attached(:photo) }
   end
 
