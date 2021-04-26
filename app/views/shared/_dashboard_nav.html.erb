@@ -3,7 +3,7 @@
     <div class="navbar-start">
       <%= link_to "Home", dashboard_root_path, class: "navbar-item" %>
 
-      <div id="animalsDropDown" class="navbar-item has-dropdown">
+      <div id="animalsDropDown" class="navbar-item has-dropdown" data-controller="nav" data-action="click->nav#toggle">
         <a class="navbar-link">
           Animals
         </a>

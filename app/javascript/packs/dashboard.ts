@@ -6,12 +6,7 @@
 import Rails from '@rails/ujs'
 import * as ActiveStorage from '@rails/activestorage'
 import 'channels'
-import documentReady from '../helpers/documentReady'
-import nav from '../dashboard/nav'
+import 'controllers'
 
 Rails.start()
 ActiveStorage.start()
-
-documentReady(() => {
-  nav()
-})

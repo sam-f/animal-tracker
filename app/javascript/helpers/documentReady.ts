@@ -8,11 +8,7 @@
  * ```
  */
 function documentReady (eventHandler: () => void): void {
-  if (document.readyState === 'complete' || document.readyState === 'interactive') {
-    eventHandler()
-  } else {
-    document.addEventListener('DOMContentLoaded', eventHandler)
-  }
+  document.addEventListener('turbo:load', eventHandler)
 }
 
 export default documentReady
