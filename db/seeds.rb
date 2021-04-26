@@ -125,3 +125,25 @@ CleaningRecord.create!(
   recorded_on: Date.today,
   animal: jeff
 )
+
+clean_waterbowls = Schedule.create!(
+  repeat: Schedule::DAILY,
+  name: "Fresh water",
+  start_on: Date.yesterday,
+  user: alex
+)
+
+ScheduleItem.create!(
+  schedule: clean_waterbowls,
+  name: "Bonnie's bowl"
+)
+
+ScheduleItem.create!(
+  schedule: clean_waterbowls,
+  name: "Jeff's bowl"
+)
+
+ScheduleItem.create!(
+  schedule: clean_waterbowls,
+  name: "Bruno's bowl"
+)
