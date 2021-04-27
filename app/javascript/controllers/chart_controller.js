@@ -1,8 +1,7 @@
 import { Controller } from 'stimulus'
-import Chart from 'chart.js/auto'
 
 export default class extends Controller {
-  connect () {
+  async connect () {
     const data = {
       labels: [
         'Feeding',
@@ -22,6 +21,8 @@ export default class extends Controller {
         pointHoverBorderColor: 'rgb(255, 99, 132)'
       }]
     }
+
+    const { default: Chart } = await import('chart.js/auto')
 
     const chart = new Chart(this.element, {
       type: 'radar',
