@@ -50,3 +50,6 @@ TODOS.md
 
 .DS_Store
 .idea/
+# Ignore service worker
+/public/service-worker.js*
+/public/*.chunk.js*
