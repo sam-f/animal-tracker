@@ -28,4 +28,7 @@ class User < ApplicationRecord
   def scientific_names = extract_attribute_from(:animals, :scientific_name)
 
   def common_names = extract_attribute_from(:animals, :common_name)
+
+  def allows_notifications?
+  end
 end

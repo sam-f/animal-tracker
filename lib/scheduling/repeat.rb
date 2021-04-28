@@ -40,13 +40,11 @@ module Scheduling
     end
 
     class << self
-      (MISC + WEEKDAYS).each do |repeat_options|
-        repeat_options.each do |repeat_option|
-          define_method(repeat_option) { repeat_option }
+      (MISC + WEEKDAYS).each do |repeat_option|
+        define_method(repeat_option) { repeat_option }
 
-          define_method("#{repeat_option}?") do |potential_repeat_option|
-            repeat_option == potential_repeat_option
-          end
+        define_method("#{repeat_option}?") do |potential_repeat_option|
+          repeat_option == potential_repeat_option
         end
       end
     end
