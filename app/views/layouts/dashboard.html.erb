@@ -4,11 +4,12 @@
     <title>Animal Tracker</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <link rel="manifest" href="/manifest.json">
+    <meta name="cache" content="<%= asset_path "dashboard.css" %>" data-turbo-track="reload">
+    <meta name="cache" content="<%= asset_pack_path "dashboard.js" %>" data-turbo-track="reload">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
-    <%= stylesheet_link_tag "dashboard", media: "all", "data-turbo-track": "reload" %>
-    <%= javascript_pack_tag "dashboard", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "dashboard", media: "all", data: {"turbo-track": "reload"} %>
+    <%= javascript_pack_tag "dashboard", data: {"turbo-track": "reload"} %>
     <%= turbo_include_tags %>
   </head>
 
