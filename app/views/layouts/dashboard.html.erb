@@ -6,7 +6,7 @@
     <link rel="manifest" href="/manifest.json">
     <meta name="cache" content="<%= asset_path "dashboard.css" %>" data-turbo-track="reload">
     <meta name="cache" content="<%= asset_pack_path "dashboard.js" %>" data-turbo-track="reload">
-    <meta name="notification_permission" content="<%= current_user.allows_notifications? %>">
+    <meta name="robots" content="noindex, nofollow">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag "dashboard", media: "all", data: {"turbo-track": "reload"} %>
@@ -19,7 +19,6 @@
     <main class="container">
       <%= render partial: "shared/dashboard_flash" %>
       <%= render partial: "shared/dashboard_heading" %>
-      <input type="checkbox" id="notification_check">
       <%= yield %>
     </main>
   </body>

@@ -4,14 +4,15 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "lib": ["es6", "dom"],
-    "module": "es6",
+    "module": "esnext",
     "moduleResolution": "node",
+    "strictNullChecks": false, // Enable eventually.
     "baseUrl": ".",
     "paths": {
         "*": ["node_modules/*", "app/javascript/*"]
     },
     "sourceMap": true,
-    "target": "es5",
+    "target": "ES6",
     "noEmit": true,
     "types": [
       "node",

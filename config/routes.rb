@@ -9,6 +9,12 @@ Rails.application.routes.draw do
   namespace :dashboard do
     root "dashboard#index"
 
+    get "profile" => "users#profile"
+
+    namespace :api, defaults: {format: :json} do
+      get "users/profile" => "users#profile", :as => :profile
+    end
+
     resources :animals
     resources :animal_groups,
       except: [:show].freeze,

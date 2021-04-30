@@ -5,10 +5,14 @@ module.exports = {
   },
   extends: [
     'plugin:react/recommended',
-    'standard'
+    'standard-with-typescript'
   ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
+    project: [
+      './tsconfig.json',
+      '.eslintrc.js'
+    ],
     ecmaFeatures: {
       jsx: true
     },
@@ -17,8 +21,8 @@ module.exports = {
   },
   plugins: [
     'react',
-    '@typescript-eslint'
   ],
   rules: {
-  }
+    "@typescript-eslint/no-misused-promises": "off"
+  },
 }

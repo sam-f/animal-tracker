@@ -12,8 +12,8 @@ function getItemsToCache (): string[] {
 function onInstall (event): void {
   console.log('[Serviceworker]', 'Installing!', event)
   event.waitUntil(
-    caches.open(CACHE_NAME).then(function prefill (cache) {
-      return cache.addAll(getItemsToCache())
+    caches.open(CACHE_NAME).then(async function prefill (cache) {
+      return await cache.addAll(getItemsToCache())
     })
   )
 }
@@ -21,15 +21,15 @@ function onInstall (event): void {
 function onActivate (event): void {
   console.log('[Serviceworker]', 'Activating!', event)
   event.waitUntil(
-    caches.keys().then(function (cacheNames) {
-      return Promise.all(
+    caches.keys().then(async function (cacheNames) {
+      return await Promise.all(
         cacheNames.filter(function (cacheName) {
           // Return true if you want to remove this cache,
           // but remember that caches are shared across
           // the whole origin
           return cacheName.indexOf(CACHE_VERSION) !== 0
-        }).map(function (cacheName) {
-          return caches.delete(cacheName)
+        }).map(async function (cacheName) {
+          return await caches.delete(cacheName)
         })
       )
     })
@@ -48,9 +48,9 @@ function onFetch (event): void {
 
   event.respondWith(
     // try to return untouched request from network first
-    fetch(event.request).catch(() => {
+    fetch(event.request).catch(async () => {
       // if it fails, try to return request from the cache
-      return caches.match(event.request).then((response) => {
+      return await caches.match(event.request).then((response) => {
         if (response) {
           return response
         }

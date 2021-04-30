@@ -22,5 +22,5 @@ window.addEventListener('load', () => {
 })
 
 documentReady(() => {
-  requestNotifications();
+  requestNotifications()
 })
